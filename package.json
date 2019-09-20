@@ -1,5 +1,5 @@
 {
-  "name": "comboshop",
+  "name": "seeker",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
