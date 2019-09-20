@@ -1,7 +1,11 @@
 <template>
   <nav>
-      <div>
+      <div class="left">
           <h2><router-link to="/">Seeker</router-link></h2>
+          <form action="" v-if="url === '/search'">
+            <input placeholder="Search for anything..." />
+            <button >Search</button>
+          </form>
       </div>
 
       <div>
@@ -15,7 +19,12 @@
 
 <script>
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    computed: {
+        url(){
+            return this.$route.path;
+        }
+    }
 }
 </script>
 
@@ -53,6 +62,31 @@ nav a{
 
 nav a:hover{
     text-decoration: underline;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.left form{
+    margin-left: 50px;
+    width: 60%;
+}
+
+.left form input{
+    padding: 7px;
+    border: none;
+    width: 70%;
+}
+
+.left form button{
+    background-color: #1a66b1;
+    color: white;
+    padding: 6px;
+    border: 1px solid white;
+    cursor: pointer;
 }
 
 </style>

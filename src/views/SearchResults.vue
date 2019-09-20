@@ -26,9 +26,9 @@ export default {
 </script>
 
 <style scoped>
-small{
-  text-align: left;
-  padding-top: 10px;
+
+.container{
+  padding: 5px;
 }
 
 .results{
