@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <img src="../assets/seeker.png" alt="Seeker Logo.">
     <SearchBox />
     <SearchResult v-for="(result) in results" :key="result.title" :result=result />
   </div>
@@ -22,3 +23,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.home{
+  padding-top: 15%;
+}
+.home img {
+  width: 200px;
+  margin-bottom: 20px;
+}
+</style>
