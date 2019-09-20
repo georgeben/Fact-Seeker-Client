@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     query: '',
+    resultCount: 0,
     results: [],
   },
   mutations: {
@@ -16,6 +17,10 @@ export default new Vuex.Store({
     setResults(state, results) {
       state.results = results;
     },
+
+    setResultCount(state, count){
+      state.resultCount = count;
+    }
   },
   actions: {
 

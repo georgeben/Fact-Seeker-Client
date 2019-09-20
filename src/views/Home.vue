@@ -2,21 +2,18 @@
   <div class="home">
     <img src="../assets/seeker.png" alt="Seeker Logo.">
     <SearchBox />
-    <SearchResult v-for="(result) in results" :key="result.title" :result=result />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import SearchBox from '@/components/SearchBox.vue'
-import SearchResult from '@/components/SearchResult.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'home',
   components: {
     SearchBox,
-    SearchResult
   },
   computed: {
     ...mapState(['query', 'results'])
@@ -31,5 +28,8 @@ export default {
 .home img {
   width: 200px;
   margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

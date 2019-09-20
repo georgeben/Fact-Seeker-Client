@@ -1,7 +1,7 @@
 <template>
   <nav>
       <div>
-          <h2>Seeker</h2>
+          <h2><router-link to="/">Seeker</router-link></h2>
       </div>
 
       <div>
@@ -46,12 +46,12 @@ nav ul li {
     margin: 0 5px;
 }
 
-nav ul li a{
+nav a{
     text-decoration: none;
     color: white;
 }
 
-nav ul li a:hover{
+nav a:hover{
     text-decoration: underline;
 }
 
