@@ -18,7 +18,7 @@ export default new Vuex.Store({
       state.results = results;
     },
 
-    setResultCount(state, count){
+    setResultCount (state, count){
       state.resultCount = count;
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <small>{{this.resultCount}} {{resultCount > 1? 'results': 'result'}} found in 0.02 seconds </small>
+    <small v-if="query">{{this.resultCount}} {{resultCount > 1? 'results': 'result'}} found for {{query}} in 0.02 seconds </small>
     <div class="results" v-if="this.results.length > 0">
       <SearchResult v-for="(result) in results" :key="result.title" :result=result />
     </div>

@@ -9,6 +9,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import api from '../api/search'
 
 export default {
   name: 'SearchBox',
@@ -27,13 +28,13 @@ export default {
         return;
       }
 
-      this.$router.push('/search')
-
-      let results = await fetch(`http://localhost:3000/search?search=${this.query}`);
-      results = await results.json();
+      this.setQuery(this.query)
+      let results = await api.search(this.query)
       console.log(results);
       this.setResults(results.data);
       this.setResultCount(results.count)
+
+      this.$router.push('/search')
     },
   },
 };

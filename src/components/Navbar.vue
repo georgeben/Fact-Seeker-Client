@@ -2,9 +2,9 @@
   <nav>
       <div class="left">
           <h2><router-link to="/">Seeker</router-link></h2>
-          <form action="" v-if="url === '/search'">
-            <input placeholder="Search for anything..." />
-            <button >Search</button>
+          <form @submit="search" v-if="url === '/search'">
+            <input placeholder="Search for anything..." v-model="newQuery" />
+            <button @click="search">Search</button>
           </form>
       </div>
 
@@ -18,13 +18,39 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+import api from '../api/search'
+
 export default {
     name: 'Navbar',
+    data(){
+        return {
+            newQuery: ""
+        }
+    },
     computed: {
+        ...mapState(['query']),
         url(){
             return this.$route.path;
         }
-    }
+    },
+    methods: {
+    ...mapMutations(['setQuery', 'setResults', 'setResultCount']),
+    async search(e) {
+      e.preventDefault();
+
+      if (!this.newQuery) {
+        return;
+      }
+
+      this.setQuery(this.newQuery);
+      let results = await api.search(this.newQuery)
+      console.log(results);
+      this.setResults(results.data);
+      this.setResultCount(results.count)
+
+    },
+  }
 }
 </script>
 
@@ -67,7 +93,7 @@ nav a:hover{
 .left{
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 70%;
 }
 
 .left form{
