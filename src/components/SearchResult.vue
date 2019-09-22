@@ -1,9 +1,9 @@
 <template>
   <div class="result">
     <div class="vote">
-      <img src="../assets/up_vote.png" alt="upvote" />
-      <p>50</p>
-       <img src="../assets/down_vote.png" alt="upvote" />
+      <img src="../assets/up_vote.png" alt="upvote" @click="vote('up')" />
+      <p>{{voteCount}}</p>
+       <img src="../assets/down_vote.png" alt="upvote" @click="vote('down')" />
     </div>
     <div class="text">
       <h3> <a :href="result.document.url"> {{result.document.title}} </a> </h3>
@@ -14,6 +14,10 @@
 </template>
 
 <script>
+import VoteApi from '@/api/vote';
+import constants from '../constants';
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'SearchResult',
   props: {
@@ -21,9 +25,26 @@ export default {
       type: Object,
     },
   },
-  mounted() {
-    console.log(this.result);
+  computed: {
+    voteCount() {
+      return this.result.document.upvotes - this.result.document.downvotes;
+    },
   },
+  methods: {
+    ...mapMutations(['setResult']),
+    async vote(type) {
+      if (type === constants.UP_VOTE) {
+        const result = await VoteApi.vote(this.result.document._id, type);
+        //Update the store
+        this.setResult({id: result.data._id, document: result.data})
+        this.result.document = result.data;
+      } else if (type == constants.DOWN_VOTE) {
+        const result = await VoteApi.vote(this.result.document._id, type);
+        this.setResult({id: result.data._id, document: result.data})
+        this.result.document = result.data;
+      }
+    },
+  }
 };
 </script>
 
@@ -42,6 +63,10 @@ export default {
 .vote img{
   height: 25px;
   cursor: pointer;
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text{

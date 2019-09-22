@@ -11,18 +11,19 @@
 </template>
 
 <script>
-import SearchResult from '@/components/SearchResult.vue'
 import { mapState } from 'vuex';
+import SearchResult from '@/components/SearchResult.vue';
+
 export default {
   name: 'SearchResults',
   components: {
-    SearchResult
+    SearchResult,
   },
   computed: {
-    ...mapState(['query', 'results', 'resultCount'])
-  }
-  
-}
+    ...mapState(['query', 'results', 'resultCount']),
+  },
+
+};
 </script>
 
 <style scoped>

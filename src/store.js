@@ -11,18 +11,26 @@ export default new Vuex.Store({
   },
   mutations: {
     setQuery(state, query) {
-      console.log(`Seting query ${query}`)
+      console.log(`Seting query ${query}`);
       state.query = query;
-      console.log(`Query in store ${state.query}`)
+      console.log(`Query in store ${state.query}`);
     },
 
     setResults(state, results) {
       state.results = results;
     },
 
-    setResultCount (state, count){
+    setResult(state, payload) {
+      state.results.forEach((res) => {
+        if (res.document._id == payload.id) {
+          res.document = payload.document;
+        }
+      });
+    },
+
+    setResultCount(state, count) {
       state.resultCount = count;
-    }
+    },
   },
   actions: {
 
