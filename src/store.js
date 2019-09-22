@@ -11,7 +11,9 @@ export default new Vuex.Store({
   },
   mutations: {
     setQuery(state, query) {
+      console.log(`Seting query ${query}`)
       state.query = query;
+      console.log(`Query in store ${state.query}`)
     },
 
     setResults(state, results) {

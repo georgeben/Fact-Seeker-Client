@@ -1,8 +1,15 @@
 <template>
   <div class="result">
-    <h3> <a :href="result.document.url"> {{result.document.title}} </a> </h3>
-    <a :href="result.document.url" class="url"> {{result.document.url}} </a>
-    <p>{{result.document.body}}</p>
+    <div class="vote">
+      <img src="../assets/up_vote.png" alt="upvote" />
+      <p>50</p>
+       <img src="../assets/down_vote.png" alt="upvote" />
+    </div>
+    <div class="text">
+      <h3> <a :href="result.document.url"> {{result.document.title}} </a> </h3>
+      <a :href="result.document.url" class="url"> {{result.document.url}} </a>
+      <p>{{result.document.body}}</p>
+    </div>
   </div>
 </template>
 
@@ -21,7 +28,33 @@ export default {
 </script>
 
 <style scoped>
-.result h3{
+.result{
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.vote{
+  width: 5%;
+  margin-right: 10px;
+}
+
+.vote img{
+  height: 25px;
+  cursor: pointer;
+}
+
+.text{
+  width: 94%;
+  display: block;
+}
+
+.vote p{
+  text-align: center;
+  margin: 2px 0;
+}
+
+.text h3{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -29,7 +62,7 @@ export default {
   margin-bottom: 3px;
 }
 
-.result h3 a{
+.text h3 a{
   text-decoration: none;
 }
 
