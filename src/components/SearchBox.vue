@@ -4,6 +4,7 @@
             <input placeholder="Search for anything..." v-model="query"/>
             <button @click="search">Search</button>
         </form>
+        <p class="stat">{{count}} links have been indexed.</p>
     </div>
 </template>
 
@@ -16,6 +17,7 @@ export default {
   data() {
     return {
       query: '',
+      count: 0.
     };
   },
   methods: {
@@ -23,7 +25,6 @@ export default {
     async search(e) {
       e.preventDefault();
 
-      // console.log(mapMutations(['setQuery', 'setResults']))
       if (!this.query) {
         return;
       }
@@ -37,6 +38,10 @@ export default {
       this.$router.push('/search')
     },
   },
+  async created(){
+      let result = await api.getIndexedLinksCount();
+      this.count = result.data;
+  }
 };
 </script>
 
@@ -57,5 +62,10 @@ form button{
     padding: 12px;
     border: none;
     cursor: pointer;
+}
+
+.stat{
+    text-align: center;
+    margin-top: 50px;
 }
 </style>
