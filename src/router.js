@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import SearchResults from './views/SearchResults.vue';
+import Auth from './views/Auth.vue'
 
 Vue.use(Router);
 
@@ -19,5 +20,10 @@ export default new Router({
       name: 'search',
       component: SearchResults,
     },
+    {
+      path: '/auth',
+      name: 'auth',
+      component: Auth,
+    }
   ],
 });
