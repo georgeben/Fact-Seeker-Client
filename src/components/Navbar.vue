@@ -52,8 +52,7 @@ export default {
       this.setQuery(this.newQuery);
       let results = await api.search(this.newQuery)
       console.log(results);
-      this.setResults(results.data);
-      this.setResultCount(results.count)
+      this.setResults(results);
 
     },
     logout(){

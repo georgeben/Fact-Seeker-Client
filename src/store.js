@@ -11,6 +11,7 @@ export default new Vuex.Store({
     query: '',
     resultCount: 0,
     results: [],
+    pager: {},
     user: null,
     token: '',
     errorMessage: '',
@@ -23,7 +24,9 @@ export default new Vuex.Store({
     },
 
     setResults(state, results) {
-      state.results = results;
+      state.results = results.data;
+      state.resultCount = results.count;
+      state.pager = results.pager;
     },
 
     setResult(state, payload) {
@@ -32,10 +35,6 @@ export default new Vuex.Store({
           res.document = payload.document;
         }
       });
-    },
-
-    setResultCount(state, count) {
-      state.resultCount = count;
     },
 
     setUser(state, user) {

@@ -21,7 +21,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['setQuery', 'setResults', 'setResultCount']),
+    ...mapMutations(['setQuery', 'setResults']),
     async search(e) {
       e.preventDefault();
 
@@ -32,8 +32,7 @@ export default {
       this.setQuery(this.query)
       let results = await api.search(this.query)
       console.log(results);
-      this.setResults(results.data);
-      this.setResultCount(results.count)
+      this.setResults(results);
 
       this.$router.push('/search')
     },
