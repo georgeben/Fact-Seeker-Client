@@ -16,7 +16,7 @@
 <script>
 import VoteApi from '@/api/vote';
 import constants from '../constants';
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'SearchResult',
@@ -26,6 +26,7 @@ export default {
     },
   },
   computed: {
+    ...mapState(['errorMessage']),
     voteCount() {
       return this.result.document.upvotes - this.result.document.downvotes;
     },
@@ -35,6 +36,19 @@ export default {
     async vote(type) {
       if (type === constants.UP_VOTE) {
         const result = await VoteApi.vote(this.result.document._id, type);
+        if (!result){
+          //Check if there was an error
+          if(this.errorMessage){
+            //Show toast
+            this.$toasted.show(this.errorMessage, {
+              position: 'bottom-center',
+              duration: 2000,
+              type: 'error'
+            })
+          }
+
+          return;
+        }
         //Update the store
         this.setResult({id: result.data._id, document: result.data})
         this.result.document = result.data;

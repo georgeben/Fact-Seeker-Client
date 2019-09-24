@@ -17,6 +17,13 @@ export default {
   },
   computed: {
     ...mapState(['query', 'results'])
+  },
+  mounted(){
+    this.$toasted.show('Hello dear', {
+      position: 'bottom-center',
+      duration: 2000,
+      type: 'error'
+    })
   }
 };
 </script>
