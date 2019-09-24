@@ -40,6 +40,9 @@ export default {
       }
       console.log({ user });
       this.setUser(user.data);
+
+      //Redirect to homepage
+      this.$router.push('/')
     },
   },
   computed: {
