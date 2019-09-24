@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import constants from './constants';
+import storageUtil from './utils/localStorage';
+import requests from './config/requests';
 
 Vue.use(Vuex);
 
@@ -8,6 +11,9 @@ export default new Vuex.Store({
     query: '',
     resultCount: 0,
     results: [],
+    user: {},
+    token: '',
+    errorMessage: '',
   },
   mutations: {
     setQuery(state, query) {
@@ -31,6 +37,22 @@ export default new Vuex.Store({
     setResultCount(state, count) {
       state.resultCount = count;
     },
+
+    setUser(state, user) {
+      console.log('Setting user');
+      state.user = user;
+      storageUtil.updateState(constants.currentUser, user);
+      state.token = user.token;
+      storageUtil.updateState(constants.token, user.token);
+
+      // Set axios header
+      requests.setHttpHeaders(state.token);
+    },
+
+    setErrorMsg(state, message) {
+      state.errorMessage = message.data;
+    }
+
   },
   actions: {
 

@@ -61,7 +61,7 @@ nav{
     color: white;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center !important;
     margin: 0;
     padding: 5px;
 }
@@ -75,6 +75,8 @@ nav h2{
 nav ul {
     list-style-type: none;
     display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
 }
 
 nav ul li {
