@@ -72,7 +72,7 @@ nav{
     color: white;
     display: flex;
     justify-content: space-between;
-    align-items: center !important;
+    align-items: center;
     margin: 0;
     padding: 5px;
 }

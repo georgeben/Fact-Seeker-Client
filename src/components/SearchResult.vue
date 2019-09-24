@@ -1,9 +1,9 @@
 <template>
   <div class="result">
     <div class="vote">
-      <img src="../assets/up_vote.png" alt="upvote" @click="vote('up')" />
+      <img :src="getImage('up')" alt="upvote" @click="vote('up')" />
       <p>{{voteCount}}</p>
-       <img src="../assets/down_vote.png" alt="upvote" @click="vote('down')" />
+       <img :src="getImage('down')" alt="upvote" @click="vote('down')" />
     </div>
     <div class="text">
       <h3> <a :href="result.document.url"> {{result.document.title}} </a> </h3>
@@ -25,14 +25,39 @@ export default {
       type: Object,
     },
   },
+  data() {
+    return {
+      img: 'up_vote.png'
+    }
+  },
   computed: {
-    ...mapState(['errorMessage']),
+    ...mapState(['user','errorMessage']),
     voteCount() {
       return this.result.document.upvotes - this.result.document.downvotes;
     },
   },
   methods: {
     ...mapMutations(['setResult']),
+    getImage(type){
+      if(!this.user){
+        return require(`../assets/${type}_vote.png`)
+      }
+      let voterIndex;
+      this.result.document.voters.forEach(async (voter, i) => {
+          if(voter.user.toString() == this.user._id.toString()){
+              voterIndex = i;
+          }
+      })
+      if(voterIndex == undefined){
+        return require(`../assets/${type}_vote.png`)
+      }
+
+      if(type == this.result.document.voters[voterIndex].type){
+        return require(`../assets/${type}_voted.png`)
+      }
+
+      return require(`../assets/${type}_vote.png`)
+    },
     async vote(type) {
       const result = await VoteApi.vote(this.result.document._id, type);
       if (!result){
@@ -51,7 +76,7 @@ export default {
       //Update the store
       this.setResult({id: result.data._id, document: result.data})
       this.result.document = result.data;
-      this.$toasted.show('Successfully added your vote', {
+      this.$toasted.show('Thank you for your feedback', {
         position: 'bottom-center',
         duration: 2000,
         type: 'success'
@@ -64,7 +89,7 @@ export default {
 <style scoped>
 .result{
   display: flex;
-  margin-bottom: 10px;
+  margin-top: 10px;
   align-items: center;
 }
 
@@ -98,6 +123,7 @@ export default {
   text-overflow: ellipsis;
   font-weight: normal;
   margin-bottom: 3px;
+  font-size: 1.3em;
 }
 
 .text h3 a{
