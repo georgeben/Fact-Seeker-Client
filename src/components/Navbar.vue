@@ -8,7 +8,11 @@
           </form>
       </div>
 
-      <div>
+      <div class="user-details" v-if="user.name">
+          <p>Welcome, {{user.name}}</p>
+          <a>Log out</a>
+      </div>
+      <div v-else>
           <ul>
               <li><router-link to="/login">Log in</router-link></li>
               <li><router-link to="/signup">Sign up</router-link></li>
@@ -29,7 +33,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['query']),
+        ...mapState(['query', 'user']),
         url(){
             return this.$route.path;
         }
@@ -106,7 +110,7 @@ nav a:hover{
 .left form input{
     padding: 7px;
     border: none;
-    width: 70%;
+    width: 60%;
 }
 
 .left form button{
@@ -115,6 +119,23 @@ nav a:hover{
     padding: 6px;
     border: 1px solid white;
     cursor: pointer;
+}
+
+.user-details{
+    display: flex;
+}
+
+.user-details p{
+    margin-right: 10px;
+}
+
+.user-details a{
+    color: red;
+    cursor: pointer;
+}
+
+.user-details a:hover{
+    color: red;
 }
 
 </style>
