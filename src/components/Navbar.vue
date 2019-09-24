@@ -10,8 +10,8 @@
 
       <div>
           <ul>
-              <li><router-link to="/">Log in</router-link></li>
-              <li><router-link to="/">Sign up</router-link></li>
+              <li><router-link to="/login">Log in</router-link></li>
+              <li><router-link to="/signup">Sign up</router-link></li>
           </ul>
       </div>
   </nav>

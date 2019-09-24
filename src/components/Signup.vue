@@ -36,7 +36,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['setUser']),
+    ...mapMutations(['setUser', 'setErrorMsg']),
     async signUp(e) {
       e.preventDefault();
       const createdUser = await api.signUp(this.user);
@@ -49,6 +49,9 @@ export default {
   },
   computed: {
       ...mapState(['errorMessage'])
+  },
+  mounted(){
+      this.setErrorMsg('')
   }
 };
 </script>

@@ -21,8 +21,11 @@ export default new Router({
       component: SearchResults,
     },
     {
-      path: '/auth',
-      name: 'auth',
+      path: '/login',
+      component: Auth,
+    },
+    {
+      path: '/signup',
       component: Auth,
     }
   ],

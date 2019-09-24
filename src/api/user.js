@@ -4,6 +4,10 @@ import store from '../store';
 const url = 'http://localhost:3000';
 const parseResponse = response => response.data;
 
+const handleError = (error) => {
+  store.commit('setErrorMsg', error.response.data);
+}
+
 export default {
   signUp: async ({ name, email, password }) => {
     try {
@@ -16,7 +20,7 @@ export default {
       return parseResponse(result);
     } catch (error) {
       // Set error message
-      store.commit('setErrorMsg', error.response.data);
+      handleError(error);
     }
   },
 
@@ -28,7 +32,7 @@ export default {
       });
       return parseResponse(result);
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   },
 };
