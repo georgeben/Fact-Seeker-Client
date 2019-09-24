@@ -11,7 +11,7 @@ export default new Vuex.Store({
     query: '',
     resultCount: 0,
     results: [],
-    user: {},
+    user: null,
     token: '',
     errorMessage: '',
   },
@@ -51,6 +51,11 @@ export default new Vuex.Store({
 
     setErrorMsg(state, message) {
       state.errorMessage = message.data;
+    },
+    reset(state) {
+      state.errorMessage = '';
+      state.user = null;
+      state.token = null;
     }
 
   },

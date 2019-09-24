@@ -6,11 +6,24 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
+import Navbar from '@/components/Navbar.vue';
+import { mapMutations } from 'vuex';
+import constants from './constants';
+import storageUtil from './utils/localStorage';
+
 export default {
   name: 'App',
   components: {
     Navbar,
+  },
+  methods: {
+    ...mapMutations(['setUser'])
+  },
+  created(){
+    let user = storageUtil.loadState(constants.currentUser);
+    if(user){
+      this.setUser(user)
+    }
   }
 }
 </script>

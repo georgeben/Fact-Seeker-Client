@@ -8,9 +8,9 @@
           </form>
       </div>
 
-      <div class="user-details" v-if="user.name">
+      <div class="user-details" v-if="user">
           <p>Welcome, {{user.name}}</p>
-          <a>Log out</a>
+          <a @click="logout">Log out</a>
       </div>
       <div v-else>
           <ul>
@@ -23,7 +23,8 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import api from '../api/search'
+import api from '../api/search';
+import storageUtil from '../utils/localStorage';
 
 export default {
     name: 'Navbar',
@@ -39,7 +40,7 @@ export default {
         }
     },
     methods: {
-    ...mapMutations(['setQuery', 'setResults', 'setResultCount']),
+    ...mapMutations(['setQuery', 'setResults', 'setResultCount', 'reset']),
     async search(e) {
       e.preventDefault();
 
@@ -54,6 +55,10 @@ export default {
       this.setResultCount(results.count)
 
     },
+    logout(){
+        storageUtil.clearStorage();
+        this.reset()
+    }
   }
 }
 </script>
