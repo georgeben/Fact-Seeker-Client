@@ -34,29 +34,28 @@ export default {
   methods: {
     ...mapMutations(['setResult']),
     async vote(type) {
-      if (type === constants.UP_VOTE) {
-        const result = await VoteApi.vote(this.result.document._id, type);
-        if (!result){
-          //Check if there was an error
-          if(this.errorMessage){
-            //Show toast
-            this.$toasted.show(this.errorMessage, {
-              position: 'bottom-center',
-              duration: 2000,
-              type: 'error'
-            })
-          }
-
-          return;
+      const result = await VoteApi.vote(this.result.document._id, type);
+      if (!result){
+        //Check if there was an error
+        if(this.errorMessage){
+          //Show toast
+          this.$toasted.show(this.errorMessage, {
+            position: 'bottom-center',
+            duration: 2000,
+            type: 'error'
+          })
         }
-        //Update the store
-        this.setResult({id: result.data._id, document: result.data})
-        this.result.document = result.data;
-      } else if (type == constants.DOWN_VOTE) {
-        const result = await VoteApi.vote(this.result.document._id, type);
-        this.setResult({id: result.data._id, document: result.data})
-        this.result.document = result.data;
+
+        return;
       }
+      //Update the store
+      this.setResult({id: result.data._id, document: result.data})
+      this.result.document = result.data;
+      this.$toasted.show('Successfully added your vote', {
+        position: 'bottom-center',
+        duration: 2000,
+        type: 'success'
+      })
     },
   }
 };
