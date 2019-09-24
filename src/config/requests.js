@@ -9,4 +9,7 @@ export default {
       commons[constants.authorization] = payload;
     }
   },
+  removeHttpAuthHeader() {
+    delete axios.defaults.headers.common[constants.authorization];
+  }
 };

@@ -25,6 +25,7 @@
 import { mapState, mapMutations } from 'vuex';
 import api from '../api/search';
 import storageUtil from '../utils/localStorage';
+import requests from '../config/requests'
 
 export default {
     name: 'Navbar',
@@ -57,6 +58,7 @@ export default {
     },
     logout(){
         storageUtil.clearStorage();
+        requests.removeHttpAuthHeader()
         this.reset()
     }
   }

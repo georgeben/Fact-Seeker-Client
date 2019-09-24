@@ -1,12 +1,8 @@
 import axios from 'axios';
-import store from '../store';
-
+import errorHandler from '../utils/errorHandler';
 const url = 'http://localhost:3000';
-const parseResponse = response => response.data;
 
-const handleError = (error) => {
-  store.commit('setErrorMsg', error.response.data);
-}
+const parseResponse = response => response.data;
 
 export default {
   signUp: async ({ name, email, password }) => {
@@ -20,7 +16,7 @@ export default {
       return parseResponse(result);
     } catch (error) {
       // Set error message
-      handleError(error);
+      errorHandler.handleError(error);
     }
   },
 
@@ -32,7 +28,7 @@ export default {
       });
       return parseResponse(result);
     } catch (error) {
-      handleError(error);
+      errorHandler.handleError(error);
     }
   },
 };
