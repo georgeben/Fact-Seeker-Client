@@ -52,4 +52,13 @@ body{
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.action-btn{
+    background-color: #1a66b1;
+    color: white;
+    border: none;
+    padding: 7px;
+    border-radius: 3px;
+}
+
 </style>

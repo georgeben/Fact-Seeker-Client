@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import SearchResults from './views/SearchResults.vue';
-import Auth from './views/Auth.vue'
+import Auth from './views/Auth.vue';
+import VerifyEmail from './components/VerifyEmail.vue';
 
 Vue.use(Router);
 
@@ -27,6 +28,10 @@ export default new Router({
     {
       path: '/signup',
       component: Auth,
+    },
+    {
+      path: '/verify-email/:token',
+      component: VerifyEmail,
     }
   ],
 });

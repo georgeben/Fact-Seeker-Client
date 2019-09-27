@@ -3,7 +3,7 @@
     <small v-if="query">{{this.resultCount}} {{resultCount > 1? 'results': 'result'}} found for {{query}} in 0.02 seconds </small>
     <div class="results" v-if="this.results.length > 0">
       <SearchResult v-for="(result) in results" :key="result.title" :result=result />
-      <div class="pb-0 pt-3">
+      <div class="pb-0 pt-3 pag-con" >
           <ul v-if="pager.pages && pager.pages.length" class="pagination">
               <li :class="{'disabled':pager.currentPage === 1}" class="page-item first-item">
                   <router-link :to="{ query: { page: 1 }}" class="page-link">First</router-link>
@@ -69,6 +69,12 @@ export default {
 .results{
   width: 70%;
   margin: auto;
+}
+
+.pag-con{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 </style>

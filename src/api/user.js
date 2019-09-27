@@ -31,4 +31,15 @@ export default {
       errorHandler.handleError(error);
     }
   },
+
+  verifyUserEmail: async (token) => {
+    try {
+      const result = await axios.post(`${url}/users/verify-email`, {
+        token
+      })
+      return parseResponse(result)
+    } catch (error) {
+      errorHandler.handleError(error)
+    }
+  }
 };

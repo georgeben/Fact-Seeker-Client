@@ -59,6 +59,24 @@ export default {
       return require(`../assets/${type}_vote.png`)
     },
     async vote(type) {
+      console.log(this.user)
+      if(!this.user){
+        this.$toasted.show('You have to sign in before you can give feedback', {
+            position: 'bottom-center',
+            duration: 2000,
+            type: 'error'
+          })
+        return;
+      }
+
+      if(!this.user.verifiedEmail){
+        this.$toasted.show('Please verify your email before you can vote', {
+            position: 'bottom-center',
+            duration: 2000,
+            type: 'error'
+          })
+        return;
+      }
       const result = await VoteApi.vote(this.result.document._id, type);
       if (!result){
         //Check if there was an error

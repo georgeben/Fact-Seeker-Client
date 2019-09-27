@@ -13,7 +13,7 @@
           <input type="password"  class="form-control" id="password" placeholder="Choose a password" v-model="user.password" required/>
       </div>
 
-      <button>Submit</button>
+      <button class="action-btn">Submit</button>
   </form>
 </template>
 
@@ -38,7 +38,6 @@ export default {
       if(!user){
           return;
       }
-      console.log({ user });
       this.setUser(user.data);
 
       //Redirect to homepage
@@ -70,12 +69,5 @@ form h3{
     text-align: center;
 }
 
-form button{
-    background-color: #1a66b1;
-    color: white;
-    border: none;
-    padding: 7px;
-    border-radius: 3px;
-}
 
 </style>
