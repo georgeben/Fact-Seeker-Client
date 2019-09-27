@@ -59,7 +59,7 @@ export default {
         storageUtil.clearStorage();
         requests.removeHttpAuthHeader()
         this.reset()
-        this.router.push('/')
+        this.$router.push('/')
     }
   }
 }
