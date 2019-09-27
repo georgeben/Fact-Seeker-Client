@@ -40,6 +40,10 @@ export default {
       }
       this.setUser(user.data);
 
+      if(!user.data.verifiedEmail){
+        this.$router.push('/onboarding/1')
+        return;
+      }
       //Redirect to homepage
       this.$router.push('/')
     },

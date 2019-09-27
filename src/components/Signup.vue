@@ -45,6 +45,7 @@ export default {
       }
       console.log({ createdUser });
       this.setUser(createdUser.data);
+      this.$router.push('/onboarding/1')
     },
   },
   computed: {

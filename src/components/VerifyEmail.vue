@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
       <div v-if="verifyEmailSuccess">
           <h3>Congratulations</h3>
           <p v-if="verifyEmailSuccess">You have successfully verified your email</p>
@@ -10,7 +10,7 @@
           <h3>{{msg}}</h3>
           <button class="action-btn"><router-link to="/login">Log in</router-link></button>
       </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -29,21 +29,18 @@ export default {
     },
     async created(){
         let token = this.$route.params.token;
-        console.log("Why")
-        console.log(token)
         //Send req to the backend
         let result = await api.verifyUserEmail(token);
         if (!result){
             //Check if there was an error
             if(this.errorMessage){
-                console.log(this.errorMessage)
             //Show toast
-            this.$toasted.show(this.errorMessage, {
-                position: 'bottom-center',
-                duration: 2000,
-                type: 'error'
-            })
-          }
+                this.$toasted.show(this.errorMessage, {
+                    position: 'bottom-center',
+                    duration: 2000,
+                    type: 'error'
+                })
+            }
           this.msg = this.errorMessage
           return;
         }
@@ -57,6 +54,14 @@ export default {
 </script>
 
 <style>
+
+section{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    text-align: center;
+}
 
 .action-btn a{
     color: white;

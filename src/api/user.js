@@ -41,5 +41,14 @@ export default {
     } catch (error) {
       errorHandler.handleError(error)
     }
+  },
+
+  resendConfirmationEmail: async () => {
+    try {
+      const result = await axios.post(`${url}/users/resend-verification-email`);
+      return parseResponse(result);
+    } catch (error) {
+      errorHandler.handleError(error);
+    }
   }
 };

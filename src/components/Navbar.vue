@@ -1,7 +1,7 @@
 <template>
   <nav>
       <div class="left">
-          <h2><router-link to="/">Seeker</router-link></h2>
+          <h2><router-link to="/">Fact Seeker</router-link></h2>
           <form @submit="search" v-if="url === '/search'">
             <input placeholder="Search for anything..." v-model="newQuery" />
             <button @click="search">Search</button>
@@ -9,7 +9,7 @@
       </div>
 
       <div class="user-details" v-if="user">
-          <p>Welcome, {{user.name}}</p>
+          <p>Welcome, {{user.name.split(' ')[0]}}</p>
           <a @click="logout">Log out</a>
       </div>
       <div v-else>
@@ -59,6 +59,7 @@ export default {
         storageUtil.clearStorage();
         requests.removeHttpAuthHeader()
         this.reset()
+        this.router.push('/')
     }
   }
 }
