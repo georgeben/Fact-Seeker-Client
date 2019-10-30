@@ -1,10 +1,11 @@
 import axios from 'axios';
 import errorHandler from '../utils/errorHandler';
+import constants from '../constants';
 
 export default {
   vote: async (id, type) => {
     try {
-      const result = await axios.post('http://localhost:3000/vote', {
+      const result = await axios.post(`${constants.API_URL}/vote`, {
         id,
         type,
       });

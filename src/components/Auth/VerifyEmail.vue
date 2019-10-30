@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import api from '../api/user'
+import api from '../../api/user'
 import { mapState, mapMutations } from 'vuex';
 export default {
     name: 'VerifyEmail',

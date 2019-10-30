@@ -10,7 +10,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
-import api from '../api/search'
+import api from '../../api/search'
 
 export default {
   name: 'SearchBox',

@@ -4,4 +4,5 @@ export default {
   currentUser: 'current_user',
   token: 'token',
   authorization: 'authorization',
+  API_URL: 'http://localhost:3000'
 };

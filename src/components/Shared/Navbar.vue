@@ -36,9 +36,9 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import api from '../api/search';
-import storageUtil from '../utils/localStorage';
-import requests from '../config/requests'
+import api from '../../api/search';
+import storageUtil from '../../utils/localStorage';
+import requests from '../../config/requests'
 
 export default {
     name: 'Navbar',

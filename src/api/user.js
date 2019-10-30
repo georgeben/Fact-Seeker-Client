@@ -1,5 +1,6 @@
 import axios from 'axios';
 import errorHandler from '../utils/errorHandler';
+import constants from '../constants';
 const url = 'http://localhost:3000';
 
 const parseResponse = response => response.data;
@@ -7,12 +8,11 @@ const parseResponse = response => response.data;
 export default {
   signUp: async ({ name, email, password }) => {
     try {
-      const result = await axios.post('http://localhost:3000/users/', {
+      const result = await axios.post(`${constants.API_URL}/users/`, {
         name,
         email,
         password,
       });
-      console.log(result);
       return parseResponse(result);
     } catch (error) {
       // Set error message
@@ -22,7 +22,7 @@ export default {
 
   signIn: async ({ email, password }) => {
     try {
-      const result = await axios.post(`${url}/users/login`, {
+      const result = await axios.post(`${constants.API_URL}/users/login`, {
         email,
         password,
       });
@@ -34,7 +34,7 @@ export default {
 
   verifyUserEmail: async (token) => {
     try {
-      const result = await axios.post(`${url}/users/verify-email`, {
+      const result = await axios.post(`${constants.API_URL}/users/verify-email`, {
         token
       })
       return parseResponse(result)
@@ -45,7 +45,7 @@ export default {
 
   resendConfirmationEmail: async () => {
     try {
-      const result = await axios.post(`${url}/users/resend-verification-email`);
+      const result = await axios.post(`${constants.API_URL}/users/resend-verification-email`);
       return parseResponse(result);
     } catch (error) {
       errorHandler.handleError(error);
