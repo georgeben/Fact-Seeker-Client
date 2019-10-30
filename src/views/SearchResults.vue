@@ -31,7 +31,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import SearchResult from '@/components/SearchResult.vue';
+import SearchResult from '@/components/Search/SearchResult.vue';
 import api from '../api/search';
 
 export default {

@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import SearchResults from './views/SearchResults.vue';
 import Auth from './views/Auth.vue';
-import VerifyEmail from './components/VerifyEmail.vue';
+import VerifyEmail from './components/Auth/VerifyEmail.vue';
 import Onboarding from './components/Onboarding.vue';
 import storageUtil from './utils/localStorage';
 import constants from './constants';

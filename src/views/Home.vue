@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import SearchBox from '@/components/SearchBox.vue'
+import SearchBox from '@/components/Search/SearchBox.vue'
 import { mapState } from 'vuex'
 
 export default {

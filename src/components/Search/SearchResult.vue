@@ -15,7 +15,6 @@
 
 <script>
 import VoteApi from '@/api/vote';
-import constants from '../constants';
 import { mapMutations, mapState } from 'vuex'
 
 export default {
@@ -40,7 +39,7 @@ export default {
     ...mapMutations(['setResult']),
     getImage(type){
       if(!this.user){
-        return require(`../assets/${type}_vote.png`)
+        return require(`../../assets/${type}_vote.png`)
       }
       let voterIndex;
       this.result.document.voters.forEach(async (voter, i) => {
@@ -49,17 +48,16 @@ export default {
           }
       })
       if(voterIndex == undefined){
-        return require(`../assets/${type}_vote.png`)
+        return require(`../../assets/${type}_vote.png`)
       }
 
       if(type == this.result.document.voters[voterIndex].type){
-        return require(`../assets/${type}_voted.png`)
+        return require(`../../assets/${type}_voted.png`)
       }
 
-      return require(`../assets/${type}_vote.png`)
+      return require(`../../assets/${type}_vote.png`)
     },
     async vote(type) {
-      console.log(this.user)
       if(!this.user){
         this.$toasted.show('You have to sign in before you can give feedback', {
             position: 'bottom-center',
