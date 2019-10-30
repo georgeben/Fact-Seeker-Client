@@ -1,23 +1,36 @@
 <template>
-  <nav>
+  <nav class="navbar navbar-light navbar-expand-md">
       <div class="left">
-          <h2><router-link to="/">Fact Seeker</router-link></h2>
-          <form @submit="search" v-if="url === '/search'">
-            <input placeholder="Search for anything..." v-model="newQuery" />
-            <button @click="search">Search</button>
+          <h2 class="navbar-brand"><router-link to="/">Fact Seeker</router-link></h2>
+
+          <form @submit="search" v-if="url === '/search'" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search for anything..." v-model="newQuery" aria-label="Search">
+            <button @click="search" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
           </form>
       </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <div class="user-details" v-if="user">
-          <p>Welcome, {{user.name.split(' ')[0]}}</p>
-          <a @click="logout">Log out</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav mr-auto" v-if="user">
+            <li class="nav-item active">
+                <p class="nav-link username">{{user.name.split(' ')[0]}} <span class="sr-only">(current)</span></p>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link logout" @click="logout" href="#">Log out</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto" v-else>
+            <li class="nav-item active">
+                    <router-link class="nav-link" to="/login">Log in</router-link>
+            </li>
+            <li class="nav-item">
+                    <router-link class="nav-link" to="/signup">Sign up</router-link>
+            </li>
+        </ul>
       </div>
-      <div v-else>
-          <ul>
-              <li><router-link to="/login">Log in</router-link></li>
-              <li><router-link to="/signup">Sign up</router-link></li>
-          </ul>
-      </div>
+
   </nav>
 </template>
 
@@ -67,7 +80,7 @@ export default {
 
 <style scoped>
 
-nav{
+.navbar{
     background-color: #1a66b1;
     color: white;
     display: flex;
@@ -106,7 +119,7 @@ nav a:hover{
 .left{
     display: flex;
     align-items: center;
-    width: 70%;
+    width: 80%;
 }
 
 .left form{
@@ -132,17 +145,17 @@ nav a:hover{
     display: flex;
 }
 
-.user-details p{
-    margin-right: 10px;
+.username{
+    color: white !important;
 }
 
-.user-details a{
-    color: red;
+.logout{
+    color: red !important;
     cursor: pointer;
 }
 
-.user-details a:hover{
-    color: red;
+.logout:hover{
+    color: red !important;
 }
 
 </style>

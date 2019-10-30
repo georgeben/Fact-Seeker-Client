@@ -61,4 +61,8 @@ body{
     border-radius: 3px;
 }
 
+.nav-link{
+  color: white !important;
+}
+
 </style>
